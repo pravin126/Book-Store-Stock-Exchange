@@ -15,7 +15,50 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+            <form method="POST" >
+                {% csrf_token %}
+                <div class="col-md-4">
+                  <label for="validationCustom01" class="form-label">Name</label>
+                  <input type="text" class="form-control" name="name" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="validationCustom03" class="form-label">address</label>
+                  <input type="text" class="form-control" name="address" required>
+                  <div class="invalid-feedback">
+                    Please provide a valid address.
+                  </div>
+                </div>
+                <div class="col-md-5">
+                    <label for="validationCustom05" class="form-label">Phone</label>
+                    <input type="text" class="form-control" name="phone" required>
+                    <div class="invalid-feedback">
+                      Please provide a valid Phone.
+                    </div>
+                  </div>
+                <div class="col-md-3">
+                  <label for="validationCustom05" class="form-label">Email</label>
+                  <input type="text" class="form-control" name="email"  required>
+                  <div class="invalid-feedback">
+                    Please provide a valid Email.
+                  </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">Type</label>
+                    <select class="form-select" name="contact_type">
+                        <option selected disabled value="">Choose...</option>
+                        <option value="Family">Family</option>
+                        <option value="Friend">Friend</option>
+                      </select>
+                      <div class="invalid-feedback">
+                    </div>
+                  </div>
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Submit form</button>
+                </div>
+            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -32,19 +75,30 @@
     <table id="myTable" class="display">
         <thead>
             <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>address</th>
+                <th>phone</th>
+                <th>email</th>
+                <th>Type</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
+        {% for contact in contacts.all %}
             <tr>
-                <td>Row 1 Data 1</td>
-                <td>Row 1 Data 2</td>
+                <td>{{contact.id}}</td>
+                <td>{{contact.name}}</td>
+                <td>{{contact.address}}</td>
+                <td>{{contact.phone}}</td>
+                <td>{{contact.email}}</td>
+                <td>{{contact.contact_type}}</td>
+                <td>Edit</td>
+                <td><a href="{% url 'delete' contact.id %}" >Delete</a></td>
+ 
             </tr>
-            <tr>
-                <td>Row 2 Data 1</td>
-                <td>Row 2 Data 2</td>
-            </tr>
+        {% endfor %}
         </tbody>
     </table>
     <script>

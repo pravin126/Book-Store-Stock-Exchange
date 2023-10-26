@@ -1,6 +1,6 @@
-from django.shortcuts import render
-
-
+from django.shortcuts import render,redirect
+from .models import Contact
+from books.forms import SaveConatct
 from django.http import HttpResponse
 from .models import Book
 
@@ -13,4 +13,14 @@ def aboutus(request):
     return render(request,"about.html")
 
 def contactus(request):
-    return render(request,"contact.html")
+    contacts=Contact.objects
+    if request.method=='POST':
+        form=SaveConatct(request.POST or None)
+        if form.is_valid():
+            form.save
+    return render(request,"contact.html",{'contacts':contacts})
+
+def delete(request,contact_id):
+    contact=Contact.objects.get(pk=contact_id)
+    contact.delete()
+    return render(request,'contact.html')

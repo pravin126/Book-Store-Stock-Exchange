@@ -8,6 +8,11 @@ class Book(models.Model):
     bookimage=models.ImageField(upload_to='images/')
     bookpath=models.FileField(upload_to='book_path/')
 
+    def __str__(self):
+        return self.booktitle
+        return self.boodetails
+        return self.bookauthor
+
 class Contact(models.Model):
     name=models.CharField(max_length=40)
     address=models.CharField(max_length=100)
@@ -15,8 +20,9 @@ class Contact(models.Model):
     email=models.EmailField()
     contact_type=models.CharField(max_length=20)
 
-
     def __str__(self):
-        return self.booktitle
-        return self.boodetails
-        return self.bookauthor
+        return self.name
+        return self.address
+        return self.phone
+
+    
