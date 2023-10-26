@@ -11,3 +11,6 @@ def index(request):
 
 def aboutus(request):
     return render(request,"about.html")
+
+def contactus(request):
+    return render(request,"contact.html")
