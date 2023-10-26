@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="jumbotron">
+        <div class="jumbotron" style="width: 100%;">
             <h1 class="display-4">Book Store</h1>
             <p class="lead">This is a simple Book.</p>
             <hr class="my-4">
@@ -14,14 +14,17 @@
           </div>
     </div>
     <div class="row">
-        <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+      {% for book in books.all %}
+        <div class="card" style="width: 18rem; margin-left: 10px;">
+            <img src="{{ book.bookimage.url }}" class="card-img-top" alt="..." style="height: 250px;">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <h5 class="card-title">{{book.booktitle}}</h5>
+              <p class="card-text">{{book.boodetails}}</p>
+              <p ><B>Author:</B>{{book.bookauthor}}</p>
+              <a href="{{book.bookpath.url}}"Download class="btn btn-primary">Download</a>
             </div>
           </div>
+      {% endfor %}
     </div>
 
 </div>

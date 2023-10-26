@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 
 from django.http import HttpResponse
+from .models import Book
 
 def index(request):
-    return render(request,"index.html")
+    books=Book.objects
+    return render(request,"index.html",{'books':books})
