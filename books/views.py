@@ -36,3 +36,7 @@ def edit(request,contact_id):
     else:
         contact=Contact.objects.get(pk=contact_id)
         return render(request,'edit.html',{'contact':contact})
+    
+
+def market(request):
+    return render(request,'market.html')
