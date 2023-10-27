@@ -24,3 +24,15 @@ def delete(request,contact_id):
     contact=Contact.objects.get(pk=contact_id)
     contact.delete()
     return render(request,'contact.html')
+
+
+def edit(request,contact_id):
+    if request.method=='POST':
+        contact=Contact.objects.get(pk=contact_id)
+        form=SaveConatct(request.POST or None,instance=contact)
+        if form.is_valid():
+            form.save()
+        return redirect('/')
+    else:
+        contact=Contact.objects.get(pk=contact_id)
+        return render(request,'edit.html',{'contact':contact})

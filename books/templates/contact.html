@@ -94,7 +94,7 @@
                 <td>{{contact.phone}}</td>
                 <td>{{contact.email}}</td>
                 <td>{{contact.contact_type}}</td>
-                <td>Edit</td>
+                <td><a href="{% url 'edit' contact.id %}" >Edit</a></td>
                 <td><a href="{% url 'delete' contact.id %}" >Delete</a></td>
  
             </tr>
