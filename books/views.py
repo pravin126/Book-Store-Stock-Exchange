@@ -3,6 +3,8 @@ from .models import Contact
 from books.forms import SaveConatct
 from django.http import HttpResponse
 from .models import Book
+import requests
+import json
 
 def index(request):
     books=Book.objects
@@ -39,4 +41,9 @@ def edit(request,contact_id):
     
 
 def market(request):
-    return render(request,'market.html')
+    api_request=requests.get("https://cloud.iexapis.com/stable/stock/aapl/quote?token=pk_df56c735e8084abe9f1fecbbf635558f")
+    try:
+        api=json.loads(api_request.content)
+    except Exception as e:
+        api='Error,Data not loading'
+    return render(request,'market.html',{'api':api})
