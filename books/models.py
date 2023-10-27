@@ -25,4 +25,12 @@ class Contact(models.Model):
         return self.address
         return self.phone
 
+class Product(models.Model):
+    name=models.CharField(max_length=200)
+    details=models.CharField(max_length=300)
+    price=models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.name
+ 
     

@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
 from .models import Contact
 from books.forms import SaveConatct
-from django.http import HttpResponse
-from .models import Book
+from rest_framework import viewsets
+from .models import Book,Product
 import requests
 import json
+from .seializers import ProductSerialize
 
 def index(request):
     books=Book.objects
@@ -47,3 +48,7 @@ def market(request):
     except Exception as e:
         api='Error,Data not loading'
     return render(request,'market.html',{'api':api})
+
+class ProductView(viewsets.ModelViewSet):
+    queryset=Product.objects.all()
+    serializer_class=ProductSerialize
